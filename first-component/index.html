@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!--link bootstrap and bootstrap-icons-->
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <!--setup react react-dom babel-->
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./node_modules/@babel/standalone/babel.js"></script>
+
+    <script type="text/babel">
+        function ForgotPassword(){
+            return(
+                <div>
+                    <a href="#">Recover Password</a>
+                </div>
+            )
+        }
+
+        function Login(){
+        return(
+            <form className="border alert alert-dismissible alert-warning border-1 p-4 w-25 m-2">
+                <h2>User Login</h2>
+                <button className="btn btn-close" data-bs-dismiss="alert"></button>
+                <dl>
+                    <dt>user name</dt>
+                    <dd><input type="text" className="form-control"/></dd>
+                </dl>
+                <dl>
+                    <dt>password</dt>
+                    <dd><input type="password" className="form-control"/></dd>
+                </dl>
+                <button className="btn btn-warning w-100">Login</button>
+                <ForgotPassword/>
+            </form>
+        )
+    }
+    </script>
+    <script type="text/babel">
+        const root=ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<section><Login/><Login/></section>)
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <noscript>please enable javascript on your browser</noscript>
+</body>
+</html>
