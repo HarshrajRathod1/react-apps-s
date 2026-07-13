@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="module">
-        import {Welcome,Hello} from "./demo.js"
-        import title from "./demo.js"
-        document.querySelector('p').innerHTML=`${Welcome()}<br>${Hello()}<br>${title}`
+        // import {Welcome,Hello} from "./demo.js"
+        // import title from "./demo.js"
+        // document.querySelector('p').innerHTML=`${Welcome()}<br>${Hello()}<br>${title}`
+
+
+        import {Title as DemoTitle} from "./demo.js"
+        import {Title as IndexTitle} from "./index.js"
+
+        document.querySelector('p').innerHTML=`${DemoTitle()}<br>${IndexTitle()}`
     </script>
 </head>
 <body>
