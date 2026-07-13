@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!--css style-->
+    <style>
+        nav{
+            background-color: black;
+            color:white;
+            padding: 10px;
+            height:100vh;
+        }
+        header{
+            background-color: black;
+            color:whitesmoke;
+        }
+    </style>
+    <!--Link bootstrap-->
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-grid.css"/>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <!--Link react ReactDOM babel-->
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./node_modules/@babel/standalone/babel.js"></script>
+
+    <!--DOM-->
+    <script type="text/babel">
+        function SideBar(){
+            return(
+                <nav>
+                    <div className="bi bi-film fw-bold fs-5">PVR CINEMAS</div>
+                    <div className="mt-4">Admin-Dashboard</div>
+                    <div className="my-3">
+                        <div className="input-group">
+                            <input type="text" placeholder="search movie" className="form-control"/>
+                            <button className="btn btn-warning bi bi-search"></button>
+                        </div>
+                    </div>
+                    <div className="my-3">
+                        <div>System</div>
+                        <div className="bi my-3 bi-film"> Movie Inventory</div>
+                        <div className="bi bi-calendar-date my-3"> Schedule</div>
+                        <div className="bi bi-gear my-3"> Settings</div>
+                    </div>
+                </nav>
+            )
+        }
+
+        function MovieHeader(){
+            return(
+                <header className="d-flex align-items-center flex-row justify-content-between p-3 text-white fs-5">
+                    <div className="fs-3 fw-bold text-warning">
+                        Movie Inventory
+                    </div>
+                    <div>
+                        <span> Library</span>
+                        <span className="mx-5"> Coming Soon</span>
+                        <span>Archive</span>
+                    </div>
+                    <div>
+                        <span className="bi bi-bell"></span>
+                        <span className="bi bi-gear-fill mx-3"></span>
+                        <span className="bi bi-person-fill"> Admin</span>
+                    </div>
+                </header>
+            )
+        }
+
+        function MovieSection(){
+            return(
+                <section>
+                    <div className="d-flex flex-row justify-content-between mt-3 align-items-center">
+                        <h3>Enterprise Inventory</h3>
+                        <div>
+                            <button  data-bstarget="#new" data-bs-toggle="modal" className="bi btn btn-danger bi-plus"> Add New Movie </button>
+                            <div className="modal-fade" id="new">
+                                <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                    <h4>Add New Movie</h4>    
+                                    </div>
+                                    <div className="modal-body">
+                                        <dl>
+                                            <dt>
+                                                Title</dt>
+                                                <dd><input type="date" className="form-control"/></dd>
+                                                <dt>Release Date</dt>
+                                                <dd><input type="date" className="form-control" /></dd>
+                                                <dt>Poster</dt>
+                                                <dd><input type="file" className="form-control"/></dd>    
+                                        </dl>    
+                                    </div>
+                                    <div className="modal-footer">
+                                    <button className="btn btn-warning">Add</button>    
+                                    </div>
+                                    </div>    
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div>
+                    <MovieArticle/>
+                    </div>
+                    <div>
+                        <MovieGrid/>
+                    </div>    
+                    </section>
+            )
+        }
+
+        function MovieArticle(){
+            return (
+                <article className="d-flex mt-5">
+                    <div className="card p-2 m-2 w-25 bg-dark text-white">
+                        <h4>Movies</h4>    
+                    </div>
+                    <div className="card p-2 m-2 w-25 bg-dark text-white">
+                        <h4>12.3k Total</h4>    
+                    </div>
+                    <div className="card p-2 m-2 w-25 bg-dark text-white">
+                        <h4>5 Title</h4>    
+                    </div>
+                    <div className="card p-2 m-2 w-25 bg-dark text-white">
+                        <h4>82.3</h4>    
+                    </div>
+                </article>
+            )
+        }
+
+        function Pagination(){
+            return(
+                <div>
+                    <ul className="pagination">
+                        <li className="page-item"><a className="page-link"><span className="bi bi-chevron-left"></span></a></li>
+                        <li className="page-item"><a className="page-link"><span>1</span></a></li>
+                        <li className="page-item"><a className="page-link"><span>2</span></a></li>
+                        <li className="page-item"><a className="page-link"><span>3</span></a></li>
+                        <li className="page-item"><a className="page-link"><span>4</span></a></li>
+                        <li className="page-item"><a className="page-link"><span className="bi bi-chevron-right"></span></a></li>
+                    </ul>
+                </div>
+            )
+        }
+
+        function MovieGrid(){
+            return(
+                <table className="card p-2 m-2 w-25 bg-dark text-white">
+                    <thead>
+                        <tr>
+                            <th>POSTER</th>  
+                            <th>TITLE</th>
+                            <th>GENRAL</th>
+                            <th>RELEASE DATE</th>
+                            <th>ACTIONS</th>  
+                        </tr>    
+                    </thead> 
+                    <tbody>
+                        <tr>
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>
+                                <button className="bi bi-pen-fill mx-2 btn btn-warning"></button>
+                                <button className="bi bi-trans-fill btn btn-danger"></button>       
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>
+                                <button className="bi bi-pen-fill mx-2 btn btn-warning"></button>
+                                <button className="bi bi-trans-fill btn btn-danger"></button>       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>
+                                <button className="bi bi-pen-fill mx-2 btn btn-warning"></button>
+                                <button className="bi bi-trans-fill btn btn-danger"></button>       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>
+                                <button className="bi bi-pen-fill mx-2 btn btn-warning"></button>
+                                <button className="bi bi-trans-fill btn btn-danger"></button>       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>&nbsp;</td>  
+                            <td>
+                                <button className="bi bi-pen-fill mx-2 btn btn-warning"></button>
+                                <button className="bi bi-trans-fill btn btn-danger"></button>       
+                            </td>
+                        </tr>
+                    </tbody> 
+                    <tfoot>
+                        <tr>
+                            <td>Showing 1 to 20 of 300</td>
+                            <td colSpan="4"><Pagination/></td>
+                        </tr>    
+                    </tfoot>  
+                </table>
+            )
+        }
+        function MovieIndex(){
+            return(
+                <div className="container-fluid row">
+                    <div className="col-2"><SideBar/></div>
+                    <div className="col-10">
+                        <MovieHeader/>
+                        <MovieSection/>
+                    </div>
+                </div>
+            )
+        }
+
+        const root=ReactDOM.createRoot(document.getElementById("root"))
+        root.render(<MovieIndex/>)
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <noscript>please enable javascript on your browser</noscript>
+</body>
+</html>
