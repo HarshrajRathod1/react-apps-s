@@ -4,14 +4,10 @@ export function DataBind(){
     const [product,setProduct]=useState({name:"",color:"",price:"",rating:{rate:0,ratings:0,reviews:0},feature:[],image:null,Variant:""})
 
     function LoadData(){
-        let http=new XMLHttpRequest()
-        http.open("get","product.json",true)
-        http.send()
-        http.onreadystatechange=function(){
-            if (http.readyState===4){
-                setProduct(JSON.parse(http.responseText));
-            }
-        }
+        fetch("product.json")
+        .then(response=>response.json())
+        .then(data=>setProduct(data))
+        .catch((error)=>{return error})
     }
 
     useEffect(()=>{
