@@ -1,28 +1,47 @@
-import {  useState } from "react"
+import { useEffect, useState } from "react"
 
 export function DataBind(){
-    const [studData]=useState({name:"rahul",age:12,course:"react"})
+    const [product,setProduct]=useState({name:"",color:"",price:"",rating:{rate:0,ratings:0,reviews:0},feature:[],image:null,Variant:""})
+
+    function LoadData(){
+        let http=new XMLHttpRequest()
+        http.open("get","product.json",true)
+        http.send()
+        http.onreadystatechange=function(){
+            if (http.readyState===4){
+                setProduct(JSON.parse(http.responseText));
+            }
+        }
+    }
+
+    useEffect(()=>{
+        LoadData()
+    },[])
     return(
-        <div>
-            <h2>Object</h2>
-            <p>Name: {studData.name}</p>
-            <p>Age: {studData.age}</p>
-            <p>Course: {studData.course}</p>
-            <hr></hr>
-            <h2>Keys of object</h2>
-            {
-                Object.keys(studData).map((k,i)=>(<p key={i}>{k}</p>))
-            }
-            <hr/>
-            <h2>Values</h2>
-            {
-                Object.values(studData).map((v,i)=>(<p key={i}>{v}</p>))
-            }
-            <hr/>
-            <h2>Entries</h2>
-            {
-                Object.entries(studData).map(e=>(<p key={e}>{e}</p>))
-            }
+        <div className="container-fulid">
+            <div className="mt-4 row">
+                <div className="col-2">
+                    <img width="100%"
+                        src={product.image || undefined}
+                        alt="image"></img>
+                </div>
+                <div className="col-6">
+                    <div className="fw-bold fs-4">{product.name}
+                        <span className="badge rounded bg-success text-white">{product.rating.rate}<span className="bi bi-star-fill"></span></span>
+                        <span className="mx-2 fw-bold text-secondary"> {product.rating.ratings} ratings & {product.rating.reviews} reviews </span>
+                    </div>
+                    <ul className="mt-2 list-unstyled">
+                    {
+                        product.feature.map(f=><li key={f} className="my-2 bi bi-dot">{f}</li>)
+                    }
+                </ul> 
+                </div>
+                 <div className="col-4">
+                    <div className="fs-1 fw-bold">
+                        {product.price}
+                    </div>
+                 </div>
+            </div>
         </div>
     )
 }
