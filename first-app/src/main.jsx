@@ -5,9 +5,10 @@ import "../node_modules/bootstrap-icons/font/bootstrap-icons.json"
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
 import './index.css'
 import { Mobile } from './componets/mobile/Mobile.jsx'
+import { Weather } from './componets/weather/Weather.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Mobile />
+    <Weather />
   </StrictMode>,
 )
