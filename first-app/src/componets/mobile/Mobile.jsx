@@ -3,15 +3,10 @@ import { useEffect, useState } from "react"
 export function Mobile(){
     const [product,setProduct]=useState({"title":"","link":"","rating":"","price":0,"color":"","size":"","info":{"Brand":"","Oprating System":"","RAM Memory":"","CPU Model":"","CPU Speed":""},"about":[]})
     function loadData(){
-        let http=new XMLHttpRequest()
-        http.open("get","mobile.json",true)
-        http.send()
-        http.onreadystatechange=function(){
-            if (http.readyState===4){
-                console.log(http.responseText)
-                setProduct(JSON.parse(http.responseText))
-            }
-        }
+        fetch("mobile.json")
+        .then(response=>response.json())
+        .then(data=>setProduct(data))
+        .catch((error)=> error)
     }
     useEffect(()=>{
         loadData()
