@@ -4,10 +4,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.json"
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
 import './index.css'
-import { DataBind } from './componets/DataBind.jsx'
+import { Mobile } from './componets/mobile/Mobile.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <DataBind />
+    <Mobile />
   </StrictMode>,
 )
