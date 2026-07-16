@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
+import axios from "axios"
 
 export function Mobile(){
     const [product,setProduct]=useState({"title":"","link":"","rating":"","price":0,"color":"","size":"","info":{"Brand":"","Oprating System":"","RAM Memory":"","CPU Model":"","CPU Speed":""},"about":[]})
     function loadData(){
-        fetch("mobile.json")
-        .then(response=>response.json())
-        .then(data=>setProduct(data))
-        .catch((error)=> error)
+        axios.get("mobile.json")
+        .then((response)=>setProduct(response.data))
+        .catch((error)=>error)
     }
     useEffect(()=>{
         loadData()
