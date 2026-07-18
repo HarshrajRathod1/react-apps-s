@@ -17,14 +17,24 @@ export function Weather() {
     })
     const [now]=useState(new Date())
 
+    const [changeInput,setChangeInput]=useState("hyderabad")
+    const [submitCityName,setSubmitCityName]=useState(changeInput)
+
+    function handleSubmitCityName(e){
+        setSubmitCityName(changeInput)
+    }
+    function handleChangeInput(e){
+        setChangeInput(e.target.value)
+    }
+
     function LoadData(){
-        axios.get("https://api.openweathermap.org/data/2.5/weather?q=hyderabad&units=metric&appid=30690ee1382393774271dcdc3edbe58d")
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${submitCityName}&units=metric&appid=30690ee1382393774271dcdc3edbe58d`)
         .then((response)=>setData(response.data))
         .catch((error)=>console.log(error))
     }
     useEffect(()=>{
         LoadData()
-    },[])
+    },[submitCityName])
     return (
         <div className="container-fulid">
             <header className="d-flex flex-row justify-content-between align-items-center p-2 bg-black text-white fs-5 border border-secondary">
@@ -35,7 +45,10 @@ export function Weather() {
                     <span>Air Quality</span>
                 </div>
                 <div className="">
-                    <input className="px-3 py-2 rounded-pill" type="text" placeholder="Search cities..."/>
+                    <div className="input-group">
+                        <input onChange={handleChangeInput} className="form-control" type="text" placeholder="Search cities..." value={changeInput}/>
+                        <span className="bi bi-search p-2 btn btn-warning" onClick={handleSubmitCityName}></span>
+                    </div>
                 </div>
                 <div className="d-flex flex-row justify-content-between align-items-center ">
                     <span className="bi bi-bell-fill"></span>
@@ -43,7 +56,7 @@ export function Weather() {
                     <span className="bi bi-person-circle"></span>
                 </div>
             </header>
-
+            
             <main className="row">
                 <nav className="col-3 bg-black text-white vh-100 border border-secondary">
                     <div className="bi bi-cloud p-5 fw-bold fs-4 text-center"> Global Weather</div>

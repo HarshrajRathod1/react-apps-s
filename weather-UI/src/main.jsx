@@ -11,7 +11,5 @@ import App from './App.jsx'
 import { Weather } from './componets/weather.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <Weather />
-  </StrictMode>,
 )
