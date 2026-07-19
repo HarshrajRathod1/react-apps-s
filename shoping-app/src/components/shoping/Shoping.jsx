@@ -47,20 +47,22 @@ export function Shoping(){
                         </div>
                     </div>
                 </nav>
-                <section className="col-9 d-flex flex-wrap">
+                <section className="col-9 d-flex flex-row flex-wrap card">
                     {
                         products.products.map(product=>(
-                            <div className="p-4 border border-secondary rounded-2">
-                                <div>
-                                    <img src={product.thumbnail}/>
-                                    <div>{product.title}</div>
+                            <div className="card m-3 p-2 text-center" style={{width:"300px"}}>
+                                <img src={product.thumbnail} height="200" className="card-img-top"/>
+                                <div className="card-header" style={{height:"80px"}}>
+                                    {product.title}
                                 </div>
-                                <div>
-                                    <h3>Price</h3>
-                                    <p>{product.price}</p>
+                                <div className="card-body">
+                                    <dl>
+                                        <dt> Price: </dt>
+                                        <dd> ₹ {product.price}</dd>
+                                    </dl>
                                 </div>
-                                <div>
-                                    <button className="btn btn-warning bi bi-cart4"> Add to Cart</button>
+                                <div className="card-footer">
+                                    <button className="btn btn-warning w-100 bi bi-cart4"> Add to Cart</button>
                                 </div>
                             </div>
                         ))
