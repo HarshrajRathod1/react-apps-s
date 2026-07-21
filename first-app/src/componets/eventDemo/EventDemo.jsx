@@ -1,21 +1,20 @@
 import { useState } from "react"
 
 export function EventDemo(){
-    const [name,setName]=useState('')
-    function handleChange(e){
-        setName(e.target.value)
+
+    function handleExecuteClick(){
+        setTimeout(()=>{
+            console.log('Micro Task')
+        },0)
+        Promise.resolve().then(function(){
+            console.log('Macro Task')
+        })
+        console.log('Normal Task')
     }
-    function handleSubmit(e){
-        e.preventDefault()
-        alert('Form Submitted')
-        setName('')
-    }
+    
     return (
-        <div className="container-fluid m-5">
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" onChange={handleChange} value={name}/>
-                <button type="submit">Submit</button>
-            </form>
+        <div className="container-fluid">
+            <button onClick={handleExecuteClick}>Execute</button> 
         </div>
     )
 }
