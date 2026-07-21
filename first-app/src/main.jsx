@@ -8,9 +8,10 @@ import { Mobile } from './componets/mobile/Mobile.jsx'
 import { EventDemo } from './componets/eventDemo/EventDemo.jsx'
 import { Mousedemo } from './componets/mouse-demo/mousedemo.jsx'
 import { MouseAnimation } from './componets/mouse-animation/mouse-animation.jsx'
+import { KeyDemo } from './componets/key-demo/key-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <MouseAnimation />
+    <KeyDemo />
   </StrictMode>,
 )
