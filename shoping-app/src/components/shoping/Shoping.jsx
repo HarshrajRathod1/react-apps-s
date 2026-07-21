@@ -17,6 +17,11 @@ export function Shoping(){
         .catch((error)=>console.log(error))
     }
 
+    function handleCategory(e){
+        axios.get(`https://dummyjson.com/products/category/${e.target.value}`)
+        .then((response)=>setProducts(response.data))
+    }
+
     useEffect(()=>{
         LoadCategories()
         LoadProducts()
@@ -41,7 +46,7 @@ export function Shoping(){
                         <div>
                             <select className="form-select" size="20">
                             {
-                               Categories.map(category=>(<option key={category.slug} value={category.slug}>{category.name}</option>))
+                               Categories.map(category=>(<option key={category.slug} value={category.slug} onClick={handleCategory}>{category.name}</option>))
                             }
                             </select>
                         </div>
@@ -50,7 +55,7 @@ export function Shoping(){
                 <section className="col-9 d-flex flex-row flex-wrap card">
                     {
                         products.products.map(product=>(
-                            <div className="card m-3 p-2 text-center" style={{width:"300px"}}>
+                            <div key={product.id} className="card m-3 p-2 text-center" style={{width:"300px"}}>
                                 <img src={product.thumbnail} height="200" className="card-img-top"/>
                                 <div className="card-header" style={{height:"80px"}}>
                                     {product.title}
