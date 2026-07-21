@@ -4,6 +4,7 @@ import axios from 'axios'
 export function Shoping(){
     const [Categories,setCategories]=useState([{slug:"",name:""}])
     const [products,setProducts]=useState({'products':[]})
+    const [productCount,setProductCount]=useState(0)
 
     function LoadCategories(){
         axios.get("https://dummyjson.com/products/categories")
@@ -21,7 +22,13 @@ export function Shoping(){
         axios.get(`https://dummyjson.com/products/category/${e.target.value}`)
         .then((response)=>setProducts(response.data))
     }
-
+    function handleAddCart(e){
+        setProductCount(productCount+1)
+    }
+    function handletouch(e){
+        axios.get(`https://dummyjson.com/products/category/${e.target.value}`)
+        .then((response)=>setProducts(response.data))
+    }
     useEffect(()=>{
         LoadCategories()
         LoadProducts()
@@ -35,7 +42,7 @@ export function Shoping(){
                 </div>
                 <div>
                     <span className="bi bi-person btn btn-secondary rounded mx-2"></span>
-                    <span className="bi bi-cart btn btn-warning position-realtive"><span className="badge bg-danger rounded rounded-circle position-absolute">0</span></span>
+                    <span className="bi bi-cart btn btn-warning position-realtive"><span className="badge bg-danger rounded rounded-circle position-absolute">{productCount}</span></span>
                 </div>
             </header>
             <main className="row mt-4">
@@ -46,7 +53,7 @@ export function Shoping(){
                         <div>
                             <select className="form-select" size="20">
                             {
-                               Categories.map(category=>(<option key={category.slug} value={category.slug} onClick={handleCategory}>{category.name}</option>))
+                               Categories.map(category=>(<option key={category.slug} value={category.slug} onClick={handleCategory} onTouchStart={handletouch}>{category.name}</option>))
                             }
                             </select>
                         </div>
@@ -67,7 +74,7 @@ export function Shoping(){
                                     </dl>
                                 </div>
                                 <div className="card-footer">
-                                    <button className="btn btn-warning w-100 bi bi-cart4"> Add to Cart</button>
+                                    <button className="btn btn-warning w-100 bi bi-cart4" onClick={handleAddCart}> Add to Cart</button>
                                 </div>
                             </div>
                         ))
