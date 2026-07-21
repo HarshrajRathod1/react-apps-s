@@ -12,6 +12,6 @@ import { KeyDemo } from './componets/key-demo/key-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <KeyDemo />
+    <EventDemo />
   </StrictMode>,
 )

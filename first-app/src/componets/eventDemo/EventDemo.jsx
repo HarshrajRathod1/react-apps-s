@@ -1,16 +1,22 @@
 
 export function EventDemo(){
-    function handleButton(e,...data){
-        let [id,name,city,crs]=data
-        console.log(id)
-        console.log(name)
-        console.log(city[0],city[1])
-        console.log(crs.course)
-        console.log(e)
+    function handleHeader(){
+        alert("Header Clicked")
     }
+    function handleSearch(e){
+        e.stopPropagation()
+        alert("Search Clicked")
+    }
+    
     return (
-        <div>
-            <button onClick={(e)=>handleButton(e,1,"harsh",["alirajpur","dahi"],{"course":"python"})}>Click me!</button>
+        <div className="container-fulid">
+            <header onClick={handleHeader}className="p-4 border border-2 border-dark">
+                <div className="fw-bold fw-2">Amazon</div>
+                <div>
+                    <input type="text" />
+                    <button onClick={handleSearch}>Search</button>
+                </div>
+            </header>
         </div>
     )
 }
