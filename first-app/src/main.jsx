@@ -9,9 +9,10 @@ import { EventDemo } from './componets/eventDemo/EventDemo.jsx'
 import { Mousedemo } from './componets/mouse-demo/mousedemo.jsx'
 import { MouseAnimation } from './componets/mouse-animation/mouse-animation.jsx'
 import { KeyDemo } from './componets/key-demo/key-demo.jsx'
+import { FormDemo } from './componets/form-demo/form-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <EventDemo />
+    <FormDemo />
   </StrictMode>,
 )
