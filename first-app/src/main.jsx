@@ -10,9 +10,10 @@ import { Mousedemo } from './componets/mouse-demo/mousedemo.jsx'
 import { MouseAnimation } from './componets/mouse-animation/mouse-animation.jsx'
 import { KeyDemo } from './componets/key-demo/key-demo.jsx'
 import { FormDemo } from './componets/form-demo/form-demo.jsx'
+import { FormikDemo } from './componets/formik-demo/formik-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <FormDemo />
+    <FormikDemo />
   </StrictMode>,
 )
