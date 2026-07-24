@@ -1,38 +1,15 @@
 import { useRef, useState } from "react";
 import { useFormik } from "formik";
+import * as yup from "yup";
 export function FormDemo() {
   function validateUser(formData) {
     let errors = {};
-    if (formData.User.length === 0) {
-      errors.User = "username required";
-    } else {
-      if (formData.User.length < 4) {
-        errors.User = "name is short";
-      }
-    }
-
-    if (formData.Age.length === 0) {
-      errors.Age = "age required";
-    } else {
-      if (isNaN(formData.Age)) {
-        errors.Age = "age should number";
-      }
-    }
-
     if (formData.City === "-1") {
       errors.City = "select your city";
     }
 
     if (formData.Gender.length === 0) {
       errors.Gender = "gender required";
-    }
-
-    if (formData.Mobile.length === 0) {
-      errors.Mobile = "mobile required";
-    } else {
-      if (!formData.Mobile.match(/^\+91\d{10}$/)) {
-        errors.Mobile = "enter correct mobille number +91";
-      }
     }
     return errors;
   }
@@ -48,6 +25,11 @@ export function FormDemo() {
       console.log(user);
     },
     validate: validateUser,
+    validationSchema:yup.object({
+      User:yup.string().required('User Required').min(4,"User too short"),
+      Age:yup.number().required('Age is required').min(15,'Age is grather than 15').max(30,'Age is Lessthan 30'),
+      Mobile:yup.string().required('Mobile is required').matches(/^\+91\d{10}\$/)
+    })
   });
   return (
     <div className=" container-fluid d-flex justify-content-center align-items-center vh-100">
