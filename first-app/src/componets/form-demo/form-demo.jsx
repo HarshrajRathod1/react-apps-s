@@ -21,15 +21,15 @@ export function FormDemo() {
       Gender: "",
       Mobile: "",
     },
-    onSubmit: function (user) {
-      console.log(user);
-    },
     validate: validateUser,
     validationSchema:yup.object({
       User:yup.string().required('User Required').min(4,"User too short"),
       Age:yup.number().required('Age is required').min(15,'Age is grather than 15').max(30,'Age is Lessthan 30'),
-      Mobile:yup.string().required('Mobile is required').matches(/^\+91\d{10}\$/)
-    })
+      Mobile:yup.string().required('Mobile is required').matches(/^\+91\d{10}$/,'number is invalid')
+    }),
+    onSubmit: function (user) {
+      console.log(user);
+    }
   });
   return (
     <div className=" container-fluid d-flex justify-content-center align-items-center vh-100">
@@ -44,9 +44,8 @@ export function FormDemo() {
           <dt className="my-1">UserName</dt>
           <dd>
             <input
+            {...formik.getFieldProps("User")}
               className="form-control"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               type="text"
               name="User"
             />
@@ -58,9 +57,8 @@ export function FormDemo() {
           <dt className="my-1">Age</dt>
           <dd>
             <input
+              {...formik.getFieldProps("Age")}
               className="form-control"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               type="text"
               name="Age"
             />
@@ -72,9 +70,8 @@ export function FormDemo() {
           <dt className="my-1">City</dt>
           <dd>
             <select
+            {...formik.getFieldProps("City")}
               className="form-select"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               name="City"
             >
               <option value="-1">Select Your City</option>
@@ -90,8 +87,7 @@ export function FormDemo() {
           <dt className="my-1">Gender</dt>
           <dd>
             <input
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
+            {...formik.getFieldProps("Gender")}
               type="radio"
               className="form-check-input"
               name="Gender"
@@ -99,9 +95,8 @@ export function FormDemo() {
             />{" "}
             Male &nbsp;&nbsp;
             <input
+            {...formik.getFieldProps("Gender")}
               className="form-check-input"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               type="radio"
               name="Gender"
               value="female"
@@ -115,9 +110,8 @@ export function FormDemo() {
           <dt className="my-1">Mobile</dt>
           <dd>
             <input
+              {...formik.getFieldProps("Mobile")}
               className="form-control"
-              onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
               type="text"
               name="Mobile"
             />
