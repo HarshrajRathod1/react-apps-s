@@ -2,9 +2,9 @@ import { Formik,Field,ErrorMessage,Form } from "formik"
 import * as yup from "yup"
 export function FormikDemo(){
     return(
-        <div className=" container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div className=" container-fluid d-flex justify-content-center align-items-center vh-100" style={{backgroundColor:'whitesomke'}}>
             <Formik initialValues={{User:'',Age:0,Mobile:''}} validationSchema={yup.object({User:yup.string().required('User Required').min(4,'Name too Short'),Age:yup.number().required('Age Required').min(15,'min 15'),Mobile:yup.string().required('Mobile required').matches(/^\d{10}$/)})} onSubmit={(user)=>console.log(user)}>
-                <Form className="shadow-sm p-4 w-25 rounded-2">
+                <Form style={{backgroundColor:'white'}} className="shadow-sm p-4 w-25 rounded-2">
                     <h2 className="fs-4 text-center fw-bold text-primary">Register</h2>
                     <dl>
                         <dt className="my-1">UserName</dt>

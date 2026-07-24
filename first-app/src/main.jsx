@@ -14,6 +14,6 @@ import { FormikDemo } from './componets/formik-demo/formik-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <FormikDemo />
+    <FormDemo />
   </StrictMode>,
 )
