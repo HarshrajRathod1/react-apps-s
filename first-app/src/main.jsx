@@ -11,9 +11,10 @@ import { MouseAnimation } from './componets/mouse-animation/mouse-animation.jsx'
 import { KeyDemo } from './componets/key-demo/key-demo.jsx'
 import { FormDemo } from './componets/form-demo/form-demo.jsx'
 import { FormikDemo } from './componets/formik-demo/formik-demo.jsx'
+import { SdemoHookForm } from './componets/self-react-hook-form/sdemo-hook-form.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <FormikDemo />
+    <SdemoHookForm />
   </StrictMode>,
 )
