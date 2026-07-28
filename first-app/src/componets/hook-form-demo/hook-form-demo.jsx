@@ -11,7 +11,7 @@ export function HookFormDemo(){
             <Navbar theme="bg-dark text-white" brandIcon="bi bi-cloud" brandTitle=" Weather App" menuItems={["Home","City", "Today","Last Week"]} searchString="eg: city, country, place" btnColor="btn btn-light"/>
             <form onSubmit={handleSubmit(submit)}>
 
-            <Navbar theme="bg-danger" brandIcon="bi bi-fork-knife" btnColor="btn btn-dark" brandTitle=" Food Delivery" searchString="eg: restaurent, recipes, city" menuItems={['Trending','Most Ordered','10 Min Deliver']} />
+            <Navbar theme="bg-danger text-white" brandIcon="bi bi-fork-knife" btnColor="btn btn-dark" brandTitle=" Food Delivery" searchString="eg: restaurent, recipes, city" menuItems={['Trending','Most Ordered','10 Min Deliver']} />
                 <dl>
                     <dt>Name</dt>
                     <dd><input type="text" name="Name"{...register("Name",{required:true,minLength:4})}/></dd>

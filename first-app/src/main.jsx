@@ -14,9 +14,10 @@ import { FormikDemo } from './componets/formik-demo/formik-demo.jsx'
 import { SdemoHookForm } from './componets/self-react-hook-form/sdemo-hook-form.jsx'
 import { HookFormDemo } from './componets/hook-form-demo/hook-form-demo.jsx'
 import { Navbar } from './controlled-components/navbar.jsx'
+import { ControlledDemo } from './componets/controlled-demo/controlled-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HookFormDemo />
+    <ControlledDemo />
   </StrictMode>,
 )
