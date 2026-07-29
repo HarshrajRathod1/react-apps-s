@@ -16,9 +16,10 @@ import { HookFormDemo } from './componets/hook-form-demo/hook-form-demo.jsx'
 import { Navbar } from './controlled-components/navbar.jsx'
 import { ControlledDemo } from './componets/controlled-demo/controlled-demo.jsx'
 import { Parent } from './componets/context-demo/context-demo.jsx'
+import { ParentComponent } from './componets/control-demo/control-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Parent />
+    <ParentComponent />
   </StrictMode>,
 )
