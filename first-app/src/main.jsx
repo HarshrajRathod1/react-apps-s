@@ -15,9 +15,10 @@ import { SdemoHookForm } from './componets/self-react-hook-form/sdemo-hook-form.
 import { HookFormDemo } from './componets/hook-form-demo/hook-form-demo.jsx'
 import { Navbar } from './controlled-components/navbar.jsx'
 import { ControlledDemo } from './componets/controlled-demo/controlled-demo.jsx'
+import { Parent } from './componets/context-demo/context-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ControlledDemo />
+    <Parent />
   </StrictMode>,
 )
