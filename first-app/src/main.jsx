@@ -17,9 +17,10 @@ import { Navbar } from './controlled-components/navbar.jsx'
 import { ControlledDemo } from './componets/controlled-demo/controlled-demo.jsx'
 import { Parent } from './componets/context-demo/context-demo.jsx'
 import { ParentComponent } from './componets/control-demo/control-demo.jsx'
+import { FakestoreIndex } from './componets/fakestore/fakestore-index.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ParentComponent />
+    <FakestoreIndex />
   </StrictMode>,
 )
