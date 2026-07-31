@@ -18,9 +18,10 @@ import { ControlledDemo } from './componets/controlled-demo/controlled-demo.jsx'
 import { Parent } from './componets/context-demo/context-demo.jsx'
 import { ParentComponent } from './componets/control-demo/control-demo.jsx'
 import { FakestoreIndex } from './componets/fakestore/fakestore-index.jsx'
+import { ConditionDemo } from './componets/condition-demo/condition-demo.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <FakestoreIndex />
+    <ConditionDemo />
   </StrictMode>,
 )
