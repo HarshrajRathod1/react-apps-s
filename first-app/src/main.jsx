@@ -19,6 +19,7 @@ import { Parent } from './componets/context-demo/context-demo.jsx'
 import { ParentComponent } from './componets/control-demo/control-demo.jsx'
 import { FakestoreIndex } from './componets/fakestore/fakestore-index.jsx'
 import { ConditionDemo } from './componets/condition-demo/condition-demo.jsx'
+import { Sidebar } from './controlled-components/sidebar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
