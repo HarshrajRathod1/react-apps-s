@@ -8,12 +8,12 @@ export function ConditionDemo(){
     }
 
     function handleSignIn(){
-        sessionStorage.setItem("name",name)
+        localStorage.setItem("name",name)
         location.reload()
         
     }
     function handleSignOut(){
-        sessionStorage.removeItem("name")
+        localStorage.removeItem("name")
         location.reload()
     }
     return(
@@ -27,14 +27,14 @@ export function ConditionDemo(){
                     </div>
                 </div>
                 <div>
-                    {(sessionStorage.getItem("name")===null)?
+                    {(localStorage.getItem("name")===null)?
                     <div className="input-group">
                         <input onChange={handlename} placeholder="eg: username" type="text" name="uname" className="form-control"/>
                         <button onClick={handleSignIn} className="btn btn-danger">SignIn</button>
                     </div>
                     :
                     <div>
-                        <span>{sessionStorage.getItem("name")}</span>
+                        <span>{localStorage.getItem("name")}</span>
                         <button onClick={handleSignOut} className="btn btn-danger mx-3">SignOut</button>
                     </div>
                     }
