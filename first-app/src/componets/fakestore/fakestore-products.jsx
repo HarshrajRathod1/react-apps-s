@@ -4,6 +4,7 @@ import { CatergoryChange } from "./fakestore-index"
 
 export function FakestoreProducts({onAddToCart}){
     let categoryName=useContext(CatergoryChange)
+
     const [products,setProducts]=useState([{id:0,title:"",price:0,description:"",image:"",category:"",rating:{rate:0}}])
 
     function handleAddToCart(e){
@@ -33,7 +34,7 @@ export function FakestoreProducts({onAddToCart}){
         LoadProducts();
     },[categoryName])
     return (
-        <div className="d-flex flex-wrap" style={{height:"200px"}} >
+        <div className="d-flex flex-wrap" style={{height:"200px"}}>
             {
                 products.map(product=>
                     <div key={product.id} className="card m-2 p-2" style={{width:"200px"}}>

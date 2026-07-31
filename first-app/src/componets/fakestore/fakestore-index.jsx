@@ -13,7 +13,13 @@ export function FakestoreIndex() {
   const [searchString,setSearchString]=useState('')
 
   function handleSearch(){
-    setCatergoryName(searchString.toLowerCase())
+    for (var cate of catergory){
+      if (cate===searchString){
+        setCatergoryName(searchString)
+        return;
+      }
+    }
+    alert(`${searchString} Not in Category`)
   }
 
 
@@ -94,7 +100,7 @@ export function FakestoreIndex() {
         </div>
       </header>
       <main className="row mt-4 ">
-        <nav className="col-2  ">
+        <nav className="col-2 ">
           <div>
             <select onChange={handleNameChange} size="10" className="form-select">
               {catergory.map((item) => (
