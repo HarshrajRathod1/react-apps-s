@@ -20,9 +20,10 @@ import { ParentComponent } from './componets/control-demo/control-demo.jsx'
 import { FakestoreIndex } from './componets/fakestore/fakestore-index.jsx'
 import { ConditionDemo } from './componets/condition-demo/condition-demo.jsx'
 import { Sidebar } from './controlled-components/sidebar.jsx'
+import { TutorialIndex } from './componets/tutorial/tutorial-index.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ConditionDemo />
+    <TutorialIndex />
   </StrictMode>,
 )
