@@ -4,6 +4,7 @@ import { FakestoreProducts } from "./fakestoreProducts";
 import { lazy, Suspense } from "react";
 import { FakestoreSearch } from "./fakestoreSearch";
 import { FakestoreResult } from "./fakestoreResult";
+import { FakestoreLogin } from "./fakestoreLogin";
 
 
 export function FakestoreIndex(){
@@ -22,6 +23,7 @@ export function FakestoreIndex(){
                 <Route path="/details/:id" element={<FakestoreDetails/>}/>
                 <Route path="search" element={<FakestoreSearch/>}/>
                 <Route path="result" element={<FakestoreResult/>}/>
+                <Route path="login" element={<FakestoreLogin/>}/>
             </Routes>
             </Suspense>
             </BrowserRouter>

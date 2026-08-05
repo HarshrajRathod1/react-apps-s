@@ -21,9 +21,10 @@ import { ConditionDemo } from './componets/condition-demo/condition-demo.jsx'
 import { Sidebar } from './controlled-components/sidebar.jsx'
 import { TutorialIndex } from './componets/tutorial/tutorial-index.jsx'
 import { FakestoreIndex } from './fakestore/fakestoreIndex.jsx'
+import { CookiesProvider } from 'react-cookie'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <CookiesProvider>
     <FakestoreIndex />
-  </StrictMode>,
+  </CookiesProvider>
 )
