@@ -1,0 +1,35 @@
+{
+  "products": [
+    {
+      "title": "TV",
+      "price": 12500,
+      "id": "OCcdTec3PPY"
+    },
+    {
+      "title": "Mobile",
+      "price": 20999,
+      "id": "hg5GYu5FCtU"
+    },
+    {
+      "title": "AC",
+      "price": 40000,
+      "id": "_IFwtlktS9E"
+    },
+    {
+      "title": "Car",
+      "price": 1000000,
+      "id": "rpqw4iEJ_Ck"
+    }
+  ],
+  "categories": [
+    {
+      "category": "Electronics",
+      "id": "pseleoStbHs"
+    },
+    {
+      "category": "Fashion",
+      "id": "9byewqT8GuI"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
