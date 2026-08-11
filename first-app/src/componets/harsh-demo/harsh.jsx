@@ -1,11 +1,23 @@
-import { useFetchData } from "../../hooks/fetch-data"
+import { useState } from "react"
+import { useFilterData } from "../../hooks/filter-data"
+
 
 export function Harsh(){
-    const categorys=useFetchData("https://fakestoreapi.com/products/categories")
+    const course=["python course","java course","python Advance","Django course","development"]
+    const [searchString,setSearchString]=useState('')
+
+    const res=useFilterData(course,searchString)
+
+    function handleSearchChange(e){
+        setSearchString(e.target.value)
+    }
+
     return(
         <div className="container-fluid">
+            <input className="w-25 form-control" type="text" onChange={handleSearchChange} placeholder="search..."/>
+            <hr></hr>
             {
-                categorys.map(category=>(<li key={category}>{category}</li>))
+                res.map(item=><li key={item}>{item}</li>)
             }
         </div>
     )
