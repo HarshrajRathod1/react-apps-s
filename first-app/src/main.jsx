@@ -26,9 +26,10 @@ import { RouterProvider } from "react-router-dom";
 import { Login } from "./componets/login/login.jsx";
 import routes from "./routes/routes.jsx";
 import { Harsh } from "./componets/harsh-demo/harsh.jsx";
+import { CycleDemo } from "./componets/cycle-demo/cycle-demo.jsx";
 
 createRoot(document.getElementById("root")).render(
   <CookiesProvider>
-      <Harsh />
+      <CycleDemo />
   </CookiesProvider>,
 );
