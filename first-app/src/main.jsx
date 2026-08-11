@@ -23,12 +23,12 @@ import { TutorialIndex } from "./componets/tutorial/tutorial-index.jsx";
 import { FakestoreIndex } from "./fakestore/fakestoreIndex.jsx";
 import { CookiesProvider } from "react-cookie";
 import { RouterProvider } from "react-router-dom";
+import { Login } from "./componets/login/login.jsx";
 import routes from "./routes/routes.jsx";
+import { Harsh } from "./componets/harsh-demo/harsh.jsx";
 
 createRoot(document.getElementById("root")).render(
   <CookiesProvider>
-    <RouterProvider router={routes}>
-      <FakestoreIndex />
-    </RouterProvider>
+      <Harsh />
   </CookiesProvider>,
 );
