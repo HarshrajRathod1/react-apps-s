@@ -9,7 +9,8 @@ const routes=createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard/>
+        element:
+        <Dashboard/>
     }
 ])
 

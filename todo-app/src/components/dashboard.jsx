@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useFormik } from "formik"
 import moment from "moment"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
@@ -9,6 +9,40 @@ export function Dashboard(){
     const navigate=useNavigate()
     const [cookies,setCookie,removeCookie]=useCookies(['username','userid'])
     const [appointments,setAppointments]=useState([{user_id:'',title:'',description:'',id:'',date:''}])
+    const [searchString,setSearchString]=useState('')
+    const [appointment, setAppointment] = useState({id:'', title:'', description:'', date:'', user_id:''});
+
+    let filterAppointments=useMemo(()=>{
+        if(searchString===''){
+            return appointments
+        }else{
+            return appointments.filter(item=>item.title.toLowerCase().includes(searchString.toLowerCase()))
+        }
+    },[searchString])
+
+    function handleSearch(e){
+        setSearchString(e.target.value)
+    }
+
+    function handleEditClick(appointment){
+        setAppointment(appointment)
+    }
+    const editTaskForm=useFormik({
+        initialValues:{
+            id:appointment.id,
+            title:appointment.title,
+            description:appointment.description,
+            date:appointment.date,
+            user_id:cookies['userid'],
+        },
+        onSubmit:(appointment)=>{
+            axios.put(`http://localhost:3000/appointments/${appointment.id}`,appointment)
+            .then(()=>{
+                LoadAppointments()
+            })
+        },
+        enableReinitialize:true
+    })
 
     const newTaskForm=useFormik({
         initialValues:{
@@ -43,16 +77,16 @@ export function Dashboard(){
         } 
     }
 
-    function LoadAppointments(){
+    let LoadAppointments=useCallback(()=>{
         axios.get(`http://localhost:3000/appointments`)
         .then(response=>{
-            let userAppointments = response.data.filter(item=> item.user_id===cookies['userid']);
-            setAppointments(userAppointments);
+            let userAppointments=response.data.filter(item=> item.user_id===cookies['userid'])
+            setAppointments(userAppointments)
         })
-    }
+    },[appointments])
     useEffect(()=>{
         LoadAppointments()
-    },[cookies,appointments])
+    },)
     return(
         <div className="row p-2 container-fluid">
             <div className="col-2 bg-light d-flex flex-column justify-content-between" style={{height:"95vh"}}>
@@ -63,7 +97,7 @@ export function Dashboard(){
                     </div>
                     <div className="mt-5">
                         <button data-bs-target="#newTask" data-bs-toggle="modal" className="bi bi-plus-circle btn btn-dark w-100"> New Task</button>
-                        <form onSubmit={newTaskForm.handleSubmit} className="modal fade" id="newTask">
+                        <form onSubmit={newTaskForm.handleSubmit} className={`modal fade`}  id="newTask">
                             <div className="modal-dialog modal-dialog-centered">
                                 <div className="modal-content">
                                     <div className="modal-header">
@@ -98,21 +132,49 @@ export function Dashboard(){
 
             <div className="col-10 px-3">
                 <div className="input-group">
-                    <input type="text" className="form-control"/>
+                    <input type="text" className="form-control" onChange={handleSearch}/>
                     <span className="bi bi-search btn btn-dark"></span>
                 </div>
                 <div className="mt-5 fs-4 fw-medium"> Your Appointments <hr/></div>
 
                 <div className="d-flex flex-wrap gap-4 p-2">
                     {
-                        appointments.map(appointment=>(
+                        filterAppointments.map(appointment=>(
                             <div key={appointment.id} className="card p-2" style={{width:"250px"}}>
                                 <div className="card-header fs-5 fw-bold">{appointment.title}</div>
                                 <div className="card-body">{appointment.description}</div>
                                 <div>{moment(appointment.date).format('DD dddd, MMMM YYYY')}</div>
                                 <div className="card-footer">
-                                    <span className="bi bi-pen-fill btn btn-warning"></span>
-                                    <span onClick={()=>handleDelete(appointment.id)} className="mx-3 bi bi-trash btn btn-danger"></span>
+                                    <button onClick={()=>handleEditClick(appointment)} data-bs-toggle="modal" data-bs-target="#editTask" className="bi bi-pen-fill btn btn-warning"></button>
+                                    <div className="modal fade" id="editTask">
+                                        <form onSubmit={editTaskForm.handleSubmit}>
+                                        <div className="modal-dialog modal-dialog-centered">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h4>Edit Appoinment</h4>
+                                                </div>
+                                                <div className="modal-body">
+                                                    <dl>
+                                                        <dt>Title</dt>
+                                                        <dd><input value={editTaskForm.values.title} name="title"
+                                                        onChange={editTaskForm.handleChange} type="text" className="form-control"/></dd>
+                                                        <dt>Description</dt>
+                                                        <dd><textarea value={editTaskForm.values.description} onChange={editTaskForm.handleChange}
+                                                        name="description" className="form-control"></textarea></dd>
+                                                        <dt>Date</dt>
+                                                        <dd><input value={editTaskForm.values.date} name="date" onChange={editTaskForm.handleChange} type="date" className="form-control" /></dd>
+                                                    </dl>
+                                                </div>
+                                                <div className="modal-footer">
+                                                    <button type="submit" data-bs-dismiss="modal" className="btn btn-success">Save</button>
+                                                    <button type="button" 
+                                                    data-bs-dismiss="modal" className="btn btn-danger">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <button onClick={()=>handleDelete(appointment.id)} className="mx-3 bi bi-trash btn btn-danger"></button>
                                 </div>
                             </div>    
                         ))
