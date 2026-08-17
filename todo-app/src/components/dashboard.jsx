@@ -3,7 +3,10 @@ import { useFormik } from "formik"
 import moment from "moment"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useCookies } from "react-cookie"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { addToShare } from "../slicers/task-slicer"
+import { store } from "../store/store"
 
 export function Dashboard(){
     const navigate=useNavigate()
@@ -11,6 +14,13 @@ export function Dashboard(){
     const [appointments,setAppointments]=useState([{user_id:'',title:'',description:'',id:'',date:''}])
     const [searchString,setSearchString]=useState('')
     const [appointment, setAppointment] = useState({id:'', title:'', description:'', date:'', user_id:''});
+
+    let dispatch=useDispatch();
+
+    function handleAddToShare(appoinment){
+        alert('Apponment Shared')
+        dispatch(addToShare(appoinment))
+    }
 
     let filterAppointments=useMemo(()=>{
         if(searchString===''){
@@ -86,7 +96,7 @@ export function Dashboard(){
     },[appointments])
     useEffect(()=>{
         LoadAppointments()
-    },)
+    },[cookies,appointments,searchString])
     return(
         <div className="row p-2 container-fluid">
             <div className="col-2 bg-light d-flex flex-column justify-content-between" style={{height:"95vh"}}>
@@ -135,7 +145,25 @@ export function Dashboard(){
                     <input type="text" className="form-control" onChange={handleSearch}/>
                     <span className="bi bi-search btn btn-dark"></span>
                 </div>
-                <div className="mt-5 fs-4 fw-medium"> Your Appointments <hr/></div>
+                <div className="mt-5 fs-4 fw-medium d-flex justify-content-between"> Your Appointments <button data-bs-toggle="offcanvas" data-bs-target="#shared" className="btn btn-dark bi bi-share position-relative">  Shared <span className="badge rounded rounded-circle bg-danger position-absolute">{store.getState().sharedAppointmentsCount}</span> </button> <hr/></div>
+
+                {/* off Canvas */}
+                <div className="offcanvas offcanvas-end" id="shared">
+                        <div className="offcanvas-header">
+                            <h3>Shared Appointments</h3>
+                            <button className="btn btn-close" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div className="offcanvas-body">
+                            {
+                                store.getState().sharedAppointments.map(appointment=>
+                                    <div key={appointment.id} className="my-3">
+                                        {appointment.title} <b>{appointment.user_id}</b>
+                                    </div>
+                                )
+                            }
+                        </div>
+                    </div> 
+                
 
                 <div className="d-flex flex-wrap gap-4 p-2">
                     {
@@ -175,6 +203,7 @@ export function Dashboard(){
                                         </form>
                                     </div>
                                     <button onClick={()=>handleDelete(appointment.id)} className="mx-3 bi bi-trash btn btn-danger"></button>
+                                    <button onClick={()=>handleAddToShare(appointment)} className="btn btn-dark bi bi-share-fill"></button>
                                 </div>
                             </div>    
                         ))

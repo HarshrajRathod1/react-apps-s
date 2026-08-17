@@ -7,11 +7,15 @@ import App from './App.jsx'
 import { CookiesProvider } from 'react-cookie'
 import { RouterProvider } from 'react-router-dom'
 import routes from './routes/router.jsx'
+import { Provider } from 'react-redux'
+import { store } from './store/store.jsx'
 
 createRoot(document.getElementById('root')).render(
     <CookiesProvider>
+        <Provider store={store}>
         <RouterProvider router={routes}>
             <App/>
         </RouterProvider>
+        </Provider>
     </CookiesProvider>
 )
