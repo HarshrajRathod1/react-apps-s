@@ -1,8 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useNavigate } from "react-router-dom";
 import App from "../App";
 import { Dashboard } from "../components/dashboard";
 import { useCookies } from "react-cookie";
-
 
 const routes=createBrowserRouter([
     {
@@ -11,7 +10,7 @@ const routes=createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<Dashboard/>
+        element:<Dashboard/>,
     }
 ])
 

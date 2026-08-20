@@ -13,9 +13,7 @@ import { store } from './store/store.jsx'
 createRoot(document.getElementById('root')).render(
     <CookiesProvider>
         <Provider store={store}>
-        <RouterProvider router={routes}>
-            <App/>
-        </RouterProvider>
+            <RouterProvider router={routes}></RouterProvider>
         </Provider>
     </CookiesProvider>
 )

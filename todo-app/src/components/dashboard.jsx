@@ -15,11 +15,11 @@ export function Dashboard(){
     const [searchString,setSearchString]=useState('')
     const [appointment, setAppointment] = useState({id:'', title:'', description:'', date:'', user_id:''});
 
-    let dispatch=useDispatch();
+    let dispatch =useDispatch()
 
-    function handleAddToShare(appoinment){
+    function handleAddToShare(appointment){
         alert('Apponment Shared')
-        dispatch(addToShare(appoinment))
+        dispatch(addToShare(appointment))
     }
 
     let filterAppointments=useMemo(()=>{
@@ -95,6 +95,9 @@ export function Dashboard(){
         })
     },[appointments])
     useEffect(()=>{
+        if(!cookies['userid']){
+            navigate("/")
+        }
         LoadAppointments()
     },[cookies,appointments,searchString])
     return(
@@ -145,9 +148,8 @@ export function Dashboard(){
                     <input type="text" className="form-control" onChange={handleSearch}/>
                     <span className="bi bi-search btn btn-dark"></span>
                 </div>
-                <div className="mt-5 fs-4 fw-medium d-flex justify-content-between"> Your Appointments <button data-bs-toggle="offcanvas" data-bs-target="#shared" className="btn btn-dark bi bi-share position-relative">  Shared <span className="badge rounded rounded-circle bg-danger position-absolute">{store.getState().sharedAppointmentsCount}</span> </button> <hr/></div>
 
-                {/* off Canvas */}
+                <h4 className="mt-5 fs-4 fw-medium d-flex justify-content-between">Your Appointments  <button data-bs-toggle="offcanvas" data-bs-target="#shared" className="btn btn-dark bi bi-share position-relative">  Shared <span className="badge rounded rounded-circle bg-danger position-absolute">{store.getState().sharedAppointmentsCount}</span> </button> </h4>
                 <div className="offcanvas offcanvas-end" id="shared">
                         <div className="offcanvas-header">
                             <h3>Shared Appointments</h3>
@@ -157,13 +159,12 @@ export function Dashboard(){
                             {
                                 store.getState().sharedAppointments.map(appointment=>
                                     <div key={appointment.id} className="my-3">
-                                        {appointment.title} <b>{appointment.user_id}</b>
+                                        {appointment.title}  <b>[{appointment.user_id}]</b>
                                     </div>
                                 )
                             }
                         </div>
                     </div> 
-                
 
                 <div className="d-flex flex-wrap gap-4 p-2">
                     {
