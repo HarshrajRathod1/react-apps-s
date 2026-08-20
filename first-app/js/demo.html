@@ -4,31 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        function Search(){
-            var str=document.getElementById("serach").value;
-
-            var items=document.getElementsByTagName("li");
-
-            for (var item of items){
-                if(item.textContent.toLowerCase().includes(str.toLowerCase())){
-                    item.style.display="block"
-                }else{
-                    item.style.display="none"
-                }
-            }
-        }
-    </script>
 </head>
 <body>
-    <input type="text" id="serach" onkeyup="Search()"/>
-    <ul>
-        <li>HTML Tutorial</li>
-        <li>CSS Tutorial</li>
-        <li>HTML Course</li>
-        <li>JS Tutorial</li>
-        <li>CSS Course</li>
-        <li>JS Course</li>
-    </ul>
+    <script>
+        class Demo{
+            static s=0;
+            n=0;
+            print(){
+                Demo.s=Demo.s+1
+                this.n=this.n + 1
+                document.write(`s=${Demo.s} n=${this.n} <br>`)
+            }
+        }
+
+        let obj1=new Demo()
+        obj1.print()
+
+        let obj2=new Demo()
+        obj2.print()
+
+        let obj3=new Demo()
+        obj3.print()
+
+    </script>
 </body>
 </html>
