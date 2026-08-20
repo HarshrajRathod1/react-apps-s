@@ -26,6 +26,20 @@
         let obj3=new Demo()
         obj3.print()
 
+        class Product{
+            Name="TV"
+            #price=12000
+            _stock=true
+
+            print(){
+                document.write(`Name=${this.Name}<br> Price=${this.#price}<br> Stock=${this._stock}`)
+            }
+        }
+
+        let obj=new Product()
+
+        obj.print()
+
     </script>
 </body>
 </html>
