@@ -1,42 +1,50 @@
- import React from "react";
+import axios from "axios";
+import React from "react";
 
- export class AdminLogin extends React.Component{
+export class AdminLogin extends React.Component{
     constructor(){
-        super()
+        super();
         this.state={
-            msg:'',
-            count:0,
+            category:[],
+            products:[]
         }
-        this.handleInsertClick=this.handleInsertClick.bind(this)
-        this.handleUpdateClick=this.handleUpdateClick.bind(this)
-        this.handleCountIncrease=this.handleCountIncrease.bind(this)
-        this.handleCountDecrease=this.handleCountDecrease.bind(this)
     }
-    handleInsertClick(){
-        this.setState({msg:"Recored Inserted Successfully"})
+    LoadCategories(){
+        axios.get(`https://fakestoreapi.com/products/categories`)
+        .then(res=>{
+            this.setState({category:res.data})
+        })
     }
-    handleUpdateClick(){
-        this.setState({msg:"Recored Updated"})
+    LoadProducts(){
+        axios.get(`https://fakestoreapi.com/products/`)
+        .then(res=>{
+            this.setState({products:res.data})
+        })
     }
-
-    handleCountIncrease(){
-        this.setState({count:this.state.count+1})
-    }
-    handleCountDecrease(){
-        this.setState({count:this.state.count-1})
+    componentDidMount(){
+        this.LoadCategories()
+        this.LoadProducts()
     }
 
     render(){
         return(
-            <div className="container-fluid m-2">
-                <button onClick={this.handleInsertClick}>Insert</button>
-                <button onClick={this.handleUpdateClick} className="mx-2">Update</button>
-                <p>{this.state.msg}</p>
-                <hr/>
-                <p>Count:{this.state.count}</p>
-                <button onClick={this.handleCountIncrease}>count : +1</button>
-                <button onClick={this.handleCountDecrease} className="mx-3">count : -1</button>
+            <div className="container-fluid">
+                <h3 className="fs-4 text-center">Fake Store App</h3>
+                <select>
+                    {
+                        this.state.category.map(item=>(
+                            <option key={item}>{item}</option>
+                        ))
+                    }
+                </select>
+                <br/>
+                {
+                    this.state.products.map(product=>(
+                        <img key={product.id} src={product.image} height="50" width="50" />
+                    ))
+                }
+
             </div>
         )
     }
- }
+} 
