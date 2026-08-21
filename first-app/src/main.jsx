@@ -29,9 +29,10 @@ import { Harsh } from "./componets/harsh-demo/harsh.jsx";
 import { CycleDemo } from "./componets/cycle-demo/cycle-demo.jsx";
 import { HookDemo } from "./componets/hook-demo/hook-demo.jsx";
 import { ReducerDemo } from "./componets/reducer-demo/reducer-demo.jsx";
+import { AdminLogin } from "./class-components/admin-login.jsx";
 
 createRoot(document.getElementById("root")).render(
   <CookiesProvider>
-      <ReducerDemo />
+      <AdminLogin />
   </CookiesProvider>,
 );
