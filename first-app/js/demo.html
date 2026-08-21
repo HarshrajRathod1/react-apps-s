@@ -7,39 +7,33 @@
 </head>
 <body>
     <script>
-        class Demo{
-            static s=0;
-            n=0;
-            print(){
-                Demo.s=Demo.s+1
-                this.n=this.n + 1
-                document.write(`s=${Demo.s} n=${this.n} <br>`)
-            }
-        }
-
-        let obj1=new Demo()
-        obj1.print()
-
-        let obj2=new Demo()
-        obj2.print()
-
-        let obj3=new Demo()
-        obj3.print()
+        user=prompt("Enter Your user Name")
+        role=prompt("Enter Your Role EG: admin, customer")
+        productname=prompt("Enter Product Name")
 
         class Product{
-            Name="TV"
-            #price=12000
-            _stock=true
+            _productName;
 
-            print(){
-                document.write(`Name=${this.Name}<br> Price=${this.#price}<br> Stock=${this._stock}`)
+            get ProductName(){
+                return this._productName;
+            }
+
+            set ProductName(newName){
+                if(role==='admin'){
+                    this._productName=newName
+                }else{
+                    document.write(`Hello ${user} You are not authorized Person`)
+                }
             }
         }
 
         let obj=new Product()
 
-        obj.print()
+        obj.ProductName=productname;
 
+        if(obj.ProductName){
+            document.write(`product name => ${obj.ProductName}`)
+        }
     </script>
 </body>
 </html>
